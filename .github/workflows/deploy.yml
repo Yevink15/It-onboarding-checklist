@@ -24,10 +24,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20     # <-- no cache: npm (so no lockfile required)
+          node-version: 20
 
       - name: Install deps
         run: npm install --no-fund --no-audit
+
+      # 🔽 Add these two steps
+      - name: Init shadcn/ui (non-interactive)
+        run: npx shadcn-ui@latest init -y --path src/components
+
+      - name: Add shadcn/ui components
+        run: |
+          npx shadcn-ui@latest add \
+            button card input label select badge dialog textarea tabs switch progress \
+            --path src/components -y
 
       - name: Build
         run: npm run build
