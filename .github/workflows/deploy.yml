@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20           # no "cache:" here
+          node-version: 20     # <-- no cache: npm (so no lockfile required)
 
       - name: Install deps
         run: npm install --no-fund --no-audit
